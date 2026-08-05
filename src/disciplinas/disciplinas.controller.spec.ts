@@ -2,6 +2,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { DisciplinasController } from './disciplinas.controller';
 import { DisciplinasService } from './disciplinas.service';
 import { NotFoundException } from '@nestjs/common';
+import { Disciplina } from '../../data/disciplinas';
 
 describe('DisciplinasController', () => {
   let controller: DisciplinasController;
@@ -32,12 +33,12 @@ describe('DisciplinasController', () => {
   });
 
   it('deve retornar a disciplina quando o service encontra', () => {
-    const disciplinaMock = { id: 1, nome: 'teste', professores: [] };
+    const disciplinaMock = { id: 1, trimestre: 1, nome: 'teste', professores: [], eletiva: false };
     mockDisciplinasService.findId.mockReturnValue(disciplinaMock);
 
     const resultado = controller.findId(1);
 
-    expect(resultado).toEqual(disciplinaMock);
+    expect(resultado).toEqual<Disciplina>(disciplinaMock);
     expect(service.findId).toHaveBeenCalledWith(1);
     expect(service.findId).toHaveBeenCalledTimes(1);
   });

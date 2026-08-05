@@ -31,6 +31,8 @@ const professoresList: Professor[] = [
   { id: 25, nome: 'Luciane Fortes' },
   { id: 26, nome: 'Jorge Horacio Nicolas Audy' },
   { id: 27, nome: 'Marcelo Veiga Neves' },
+  { id: 28, nome: 'Silvia Trein Heimfarth Dapper' },
+  { id: 29, nome: 'Ana Cecília Bisso Nunes' },
 ];
 
 export const professores: Map<number, Professor> = new Map(
