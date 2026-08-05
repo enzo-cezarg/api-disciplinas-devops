@@ -6,4 +6,4 @@ import { DisciplinasModule } from './disciplinas/disciplinas.module';
   controllers: [],
   providers: [],
 })
-export class AppModule { }
+export class AppModule {}

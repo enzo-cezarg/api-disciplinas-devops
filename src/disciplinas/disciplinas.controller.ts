@@ -14,5 +14,4 @@ export class DisciplinasController {
   findId(@Param('id', ParseIntPipe) id: number) {
     return this.disciplinasService.findId(id);
   }
-
 }

@@ -11,7 +11,7 @@ export class DisciplinasService {
     const disciplina = disciplinas.find((e) => e.id === id);
 
     if (!disciplina) {
-      throw new NotFoundException(`Disciplina de id ${id} não encontrada`)
+      throw new NotFoundException(`Disciplina de id ${id} não encontrada`);
     }
 
     return disciplina;
