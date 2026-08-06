@@ -4,10 +4,6 @@ on:
   push:
     branches: [main]
 
-env:
-  AWS_REGION: us-east-2
-  ECR_REPO: api-disciplinas-devops
-
 jobs:
   test-and-build:
     runs-on: ubuntu-latest
@@ -29,32 +25,3 @@ jobs:
 
       - name: Build TypeScript
         run: npm run build
-
-  build-and-push:
-    needs: test-and-build
-    runs-on: ubuntu-latest
-    permissions:
-      id-token: write
-      contents: read
-    steps:
-      - uses: actions/checkout@v6
-
-      - name: Configurar credenciais AWS
-        uses: aws-actions/configure-aws-credentials@v4
-        with:
-          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
-          aws-region: ${{ env.AWS_REGION }}
-
-      - name: Login no ECR
-        id: ecr-login
-        uses: aws-actions/amazon-ecr-login@v2
-
-      - name: Build da imagem Docker
-        run: |
-          docker build -t ${{ steps.ecr-login.outputs.registry }}/$ECR_REPO:${{ github.sha }} \
-                        -t ${{ steps.ecr-login.outputs.registry }}/$ECR_REPO:latest .
-
-      - name: Push da imagem pro ECR
-        run: |
-          docker push ${{ steps.ecr-login.outputs.registry }}/$ECR_REPO:${{ github.sha }}
-          docker push ${{ steps.ecr-login.outputs.registry }}/$ECR_REPO:latest
