@@ -1,4 +1,4 @@
-name: Deploy main (CI)
+name: Deploy main com AWS (CI)
 
 on:
   push:
